@@ -1,0 +1,34 @@
+<%- include('../includes/header') %>
+<div class="container">
+  <p class="lead">Список услуг, предоставляемых управлением</p>
+  <div class="row">
+    <div class="col">
+      <a href="/create-service"> <button class="btn btn-success btn-right" type="button" style="float:right;">Добавить</button></a>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-hover employees">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Услуга</th>
+          <th scope="col">Время, мин</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="col">1</th>
+          <td><a href="#">Постановка на учет в качестве нуждающихся в жилом помещении</a></td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <th scope="col">2</th>
+          <td><a href="#">Переселение на юг Тюменской области</a></td>
+          <td>30</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../includes/footer') %>
