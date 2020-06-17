@@ -13,6 +13,8 @@ app.use(express.json())
 app.use("/", router)
 app.use(express.static("views"))
 app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "src")))
+
 
 
 

@@ -3,7 +3,7 @@ const router = express.Router()
 
 //обработка машрутов во frontend
 router.get('/', function (req, res) {
-  res.send('<h1>Hello!!!!!</h1>')
+  res.render('home-page')
 })
 
 
@@ -14,7 +14,7 @@ router.get('/', function (req, res) {
 //маршруты административной части
 
 router.get('/admin', function (req, res) {
-  res.send('Административная часть интерфейса')
+  res.render('admin/admin-page')
 })
 
 //управление сотрудниками
@@ -29,7 +29,7 @@ router.get('/services', function (req, res) {
 
 //управление разделом Талоны
 router.get('/tickets', function (req, res) {
-  res.send('Раздел отображения выданных талонов')
+  res.render('admin/tickets')
 })
 
 
