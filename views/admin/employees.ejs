@@ -3,7 +3,9 @@
   <p class="lead">Список сотрудников управления</p>
   <div class="row">
     <div class="col">
-      <button class="btn btn-success btn-right" type="button" style="float:right;">Новый</button>
+      <a href="/employee-create">
+        <button class="btn btn-success btn-right" type="button" style="float:right;">Новый</button>
+      </a>
     </div>
   </div>
   <div class="row">
@@ -16,16 +18,15 @@
         </tr>
       </thead>
       <tbody>
+
+        <% employee.forEach(function(item, i){%>
         <tr>
-          <th scope="col">1</th>
-          <td><a href="#">Иванов Иван</a></td>
+          <th scope="col"><%= i+1%> </th>
+          <td><a href="#"><%= item.employee %></a></td>
           <td>Сотрудник</td>
         </tr>
-        <tr>
-          <th scope="col">2</th>
-          <td><a href="#">Сидорова Галя</a></td>
-          <td>Сотрудник</td>
-        </tr>
+        <%}) %>
+
       </tbody>
     </table>
   </div>

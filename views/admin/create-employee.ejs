@@ -1,0 +1,51 @@
+<%- include('../includes/header') %>
+
+<div class="container">
+  <form action="/employee-create" method="POST">
+    <div class="form-group">
+      <label for="employee">ФИО сотрудника</label>
+      <input class="form-control" id="employee" name="employee" type="text">
+    </div>
+    <div class="form-group">
+      <label for="employeeCab">Кабинет</label>
+      <input class="form-control col-sm-2" id="employeeCab" name="employeeCab" type="text">
+    </div>
+    <fieldset>
+      <legend>Время приема</legend>
+
+      <div class="form-group">
+
+        <label for="dateStart">Начало</label>
+        <input class="form-control col-sm-2" type="time" id="dateStart" name="dateStart">
+      </div>
+      <div class="form-group">
+        <label for="dateEnd">Окончание</label>
+        <input class="form-control col-sm-2" type="time" id="dateEnd" name="dateEnd">
+
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Регистрационная информация</legend>
+      <div class="form-group">
+        <label for="login">Логин</label>
+        <input type="text" class="form-control col-sm-2" id="login" name="login">
+      </div>
+      <div class="form-group">
+        <label for="role">Права пользователя</label>
+        <input type="text" class="form-control col-sm-2" id="role" name="role">
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" class="form-control col-sm-2" id="password" name="password">
+      </div>
+
+    </fieldset>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success">Сохранить</button>
+    </div>
+  </form>
+</div>
+
+
+<%- include('../includes/footer') %>
