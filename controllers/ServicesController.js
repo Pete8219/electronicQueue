@@ -2,6 +2,20 @@ const Service = require('../models/Service')
 
 
 
+exports.viewServices = async function (req, res) {
+  try {
+    let service = await Service.viewServices()
+
+    console.log(service)
+    res.render('admin/services', {
+      service: service
+    })
+  } catch {
+    res.render('404')
+  }
+
+}
+
 exports.newService = function (req, res) {
   res.render("admin/create-service")
 }

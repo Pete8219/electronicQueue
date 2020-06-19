@@ -5,6 +5,22 @@ let Service = function (data) {
 }
 
 
+//Получение списка всех услуг
+
+Service.viewServices = function () {
+  return new Promise(async function (resolve, reject) {
+    let service = await servicesCollection.find().toArray()
+    if (service) {
+      resolve(service)
+    } else {
+      reject()
+
+    }
+
+
+  })
+}
+
 //Создание новой услуги
 
 Service.prototype.create = function () {

@@ -3,7 +3,8 @@
   <p class="lead">Список услуг, предоставляемых управлением</p>
   <div class="row">
     <div class="col">
-      <a href="/create-service"> <button class="btn btn-success btn-right" type="button" style="float:right;">Добавить</button></a>
+      <a href="/create-service"> <button class="btn btn-success btn-right" type="button"
+          style="float:right;">Добавить</button></a>
     </div>
   </div>
   <div class="row">
@@ -16,16 +17,14 @@
         </tr>
       </thead>
       <tbody>
+        <% service.forEach((item, id) =>{ %>
         <tr>
-          <th scope="col">1</th>
-          <td><a href="#">Постановка на учет в качестве нуждающихся в жилом помещении</a></td>
-          <td>15</td>
+          <th scope="col"><%= id+1%></th>
+          <td><a href="#"><%= item["service-title"]%></a></td>
+          <td><%= item["service-time"]%></td>
         </tr>
-        <tr>
-          <th scope="col">2</th>
-          <td><a href="#">Переселение на юг Тюменской области</a></td>
-          <td>30</td>
-        </tr>
+        <% })%>
+
       </tbody>
     </table>
   </div>
