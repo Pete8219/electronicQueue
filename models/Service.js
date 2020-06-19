@@ -1,4 +1,5 @@
 const servicesCollection = require('../db').db().collection('services')
+const employeesCollection = require('../db').db().collection('employees')
 
 let Service = function (data) {
   this.data = data
@@ -22,6 +23,19 @@ Service.viewServices = function () {
 }
 
 //Создание новой услуги
+Service.newService = function () {
+  return new Promise(async function (resolve, reject) {
+    let employees = await employeesCollection.find().toArray()
+    if (employees) {
+      resolve(employees)
+    } else {
+      reject()
+    }
+
+  })
+}
+
+
 
 Service.prototype.create = function () {
   return new Promise((resolve, reject) => {

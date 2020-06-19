@@ -6,7 +6,6 @@ exports.viewServices = async function (req, res) {
   try {
     let service = await Service.viewServices()
 
-    console.log(service)
     res.render('admin/services', {
       service: service
     })
@@ -16,12 +15,22 @@ exports.viewServices = async function (req, res) {
 
 }
 
-exports.newService = function (req, res) {
-  res.render("admin/create-service")
+exports.newService = async function (req, res) {
+  try {
+    let service = await Service.newService()
+    res.render('admin/create-service', {
+      service: service
+    })
+
+  } catch {
+    res.render('404')
+  }
+
 }
 
 exports.createService = function (req, res) {
   let service = new Service(req.body)
+  console.log(req.body)
   service.create().then(function () {
     res.redirect('services')
   }).catch(function () {

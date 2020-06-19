@@ -7,17 +7,17 @@
       <input class="form-control" type="text" name="service-title" id="service-title" />
     </div>
     <div class="form-group">
-      <label for="employee-select">Кто оказывает услугу</label>
-      <select class="form-control" id="employee-select">
+      <label for="employee_id">Кто оказывает услугу</label>
+      <select class="form-control" id="employee_id" name="employee_id">
         <option selected>Выберите сотрудника</option>
-        <option>Иванов</option>
-        <option>Петров</option>
-        <option>Сидоров</option>
+        <% service.forEach(function(item) {%>
+        <option value="<%= item._id %>"><%= item.employee %></option>
+        <% })%>
       </select>
     </div>
     <div class="form-group">
       <label for="service-time">Время, мин</label>
-      <input class="form-control col-sm-2" type="text" name="service-time" id="service-time" />
+      <input class="form-control col-sm-2" type="time" name="service-time" id="service-time" />
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-success" style="float:right;">Сохранить</button>
