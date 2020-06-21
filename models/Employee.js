@@ -1,35 +1,54 @@
-const employeesCollection = require("../db").db().collection("employees")
+const employeesCollection = require("../db")
+  .db()
+  .collection("employees")
+const bcrypt = require("bcryptjs")
 
-let Employee = function (data) {
-
+let Employee = function(data) {
   this.data = data
 }
 
 //Получение списка всех сотрудников
 
-Employee.viewAllEmployee = function () {
-  return new Promise(async function (resolve, reject) {
+Employee.viewAllEmployee = function() {
+  return new Promise(async function(resolve, reject) {
     let employee = await employeesCollection.find().toArray()
     if (employee) {
       resolve(employee)
     } else {
       reject()
-
     }
-
-
   })
 }
-
 
 //Создание нового сотрудника
 
-Employee.prototype.create = function () {
+Employee.prototype.create = function() {
   return new Promise((resolve, reject) => {
-    employeesCollection.insertOne(this.data).then(() => resolve()).catch(() => reject('error'))
+    let salt = bcrypt.genSaltSync(10)
+    this.data.password = bcrypt.hashSync(this.data.password, salt)
+    employeesCollection
+      .insertOne(this.data)
+      .then(() => resolve())
+      .catch(() => reject("error"))
   })
 }
 
-
+Employee.prototype.login = function() {
+  return new Promise((resolve, reject) => {
+    /* this.cleanUp() */
+    employeesCollection
+      .findOne({ login: this.data.login })
+      .then(attemptedUser => {
+        if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+          resolve("Congrats!!!")
+        } else {
+          reject("Invalid username or password")
+        }
+      })
+      .catch(function() {
+        reject("Please try again later")
+      })
+  })
+}
 
 module.exports = Employee

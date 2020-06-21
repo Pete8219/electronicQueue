@@ -107,8 +107,25 @@ body {
 
 .container {
   padding-top: 30px;
+  height: 100vh;
 }
 
 .employees {
   width: 80%;
+}
+
+.auth-form {
+  margin: 0;
+  width: 30%;
+  padding: 2%;
+  background-color: ghostwhite;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px #c2c2c2;
+  position: absolute;
+  top: 40%;
+  left: 35%;
+}
+
+.sing-in {
+  float: right;
 }

@@ -1,16 +1,18 @@
 const express = require("express")
 const router = express.Router()
-const EmployeesController = require('./controllers/EmployeesController')
-const ServicesController = require('./controllers/ServicesController')
+const EmployeesController = require("./controllers/EmployeesController")
+const ServicesController = require("./controllers/ServicesController")
 
 //обработка машрутов во frontend
-router.get("/", function (req, res) {
-  res.render("home-page")
+router.get("/", function(req, res) {
+  res.render("auth")
 })
 
 //маршруты административной части
 
-router.get("/admin", function (req, res) {
+router.post("/login", EmployeesController.login)
+
+router.get("/admin", function(req, res) {
   res.render("admin/admin-page")
 })
 
@@ -28,7 +30,7 @@ router.get("/create-service", ServicesController.newService)
 router.post("/create-service", ServicesController.createService)
 
 //управление разделом Талоны
-router.get("/tickets", function (req, res) {
+router.get("/tickets", function(req, res) {
   res.render("admin/tickets")
 })
 
