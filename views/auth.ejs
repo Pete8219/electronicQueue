@@ -1,9 +1,12 @@
 <%- include('./includes/header')%>
 
 <div class="container">
-    <div class="auth-form">
-      <form action="/login" method="POST">
-        <div class="form-group">
+  <% errors.forEach(function(message) { %>
+  <div class="alert alert-danger text-center"><%= message %></div>
+  <%}) %>
+  <div class="auth-form">
+    <form action="/login" method="POST">
+      <div class="form-group">
         <label for="login">Логин</label>
         <input class="form-control" name="login" type="text" id="login">
       </div>
@@ -11,14 +14,14 @@
       <div class="form-group">
         <label for="password">Пароль</label>
         <input class="form-control" name="password" id="password" type="password">
-        </div>
-      
+      </div>
+
       <div class="form-group">
         <button type="submit" class="btn btn-success sing-in">Войти</button>
-       </div>
-      </form>
-    </div>
-    </div>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
 
 <%- include('./includes/footer')%>

@@ -2,36 +2,32 @@ const express = require("express")
 const router = express.Router()
 const EmployeesController = require("./controllers/EmployeesController")
 const ServicesController = require("./controllers/ServicesController")
+const TicketsController = require("./controllers/TicketsController")
 
 //обработка машрутов во frontend
-router.get("/", function(req, res) {
-  res.render("auth")
-})
+router.get("/", EmployeesController.home)
 
 //маршруты административной части
 
 router.post("/login", EmployeesController.login)
+router.post("/logout", EmployeesController.logout)
 
-router.get("/admin", function(req, res) {
-  res.render("admin/admin-page")
-})
+router.get("/admin", EmployeesController.mustByLoggedIn, EmployeesController.home)
 
 //управление сотрудниками
-router.get("/employees", EmployeesController.viewEmployees)
+router.get("/employees", EmployeesController.mustByLoggedIn, EmployeesController.viewEmployees)
 
-router.get("/employee-create", EmployeesController.newEmployee)
+router.get("/employee-create", EmployeesController.mustByLoggedIn, EmployeesController.newEmployee)
 
-router.post("/employee-create", EmployeesController.createEmployee)
+router.post("/employee-create", EmployeesController.mustByLoggedIn, EmployeesController.createEmployee)
 
 //управление разделом Услуги
-router.get("/services", ServicesController.viewServices)
-router.get("/create-service", ServicesController.newService)
+router.get("/services", EmployeesController.mustByLoggedIn, ServicesController.viewServices)
+router.get("/create-service", EmployeesController.mustByLoggedIn, ServicesController.newService)
 
-router.post("/create-service", ServicesController.createService)
+router.post("/create-service", EmployeesController.mustByLoggedIn, ServicesController.createService)
 
 //управление разделом Талоны
-router.get("/tickets", function(req, res) {
-  res.render("admin/tickets")
-})
+router.get("/tickets", EmployeesController.mustByLoggedIn, TicketsController.viewAllTickets)
 
 module.exports = router
