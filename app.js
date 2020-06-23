@@ -1,5 +1,6 @@
 const express = require("express")
 const session = require("express-session")
+const helmet = require('helmet')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('connect-flash')
 const path = require("path")
@@ -7,6 +8,7 @@ const path = require("path")
 
 
 const app = express()
+app.use(helmet())
 
 let sessionOptions = session({
   secret: "electronic",
@@ -26,7 +28,7 @@ app.use(flash())
 
 app.use(function (req, res, next) {
   res.locals.employee = req.session.employee
-  console.log(res.locals.employee)
+
   next()
 })
 

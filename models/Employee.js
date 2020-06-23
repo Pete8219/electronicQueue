@@ -42,7 +42,7 @@ Employee.prototype.login = function () {
         login: this.data.login
       })
       .then(attemptedUser => {
-        console.log(attemptedUser)
+
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = {
             employee: attemptedUser.employee,
@@ -50,7 +50,7 @@ Employee.prototype.login = function () {
             role: attemptedUser.role
 
           }
-          console.log(this.data)
+
 
           resolve("Congrats!!!")
         } else {

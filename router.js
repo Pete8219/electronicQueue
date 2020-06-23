@@ -3,6 +3,7 @@ const router = express.Router()
 const EmployeesController = require("./controllers/EmployeesController")
 const ServicesController = require("./controllers/ServicesController")
 const TicketsController = require("./controllers/TicketsController")
+const RolesController = require("./controllers/RolesController")
 
 //обработка машрутов во frontend
 router.get("/", EmployeesController.home)
@@ -29,5 +30,16 @@ router.post("/create-service", EmployeesController.mustByLoggedIn, ServicesContr
 
 //управление разделом Талоны
 router.get("/tickets", EmployeesController.mustByLoggedIn, TicketsController.viewAllTickets)
+
+
+//Управление правами пользователей
+
+router.get("/roles", EmployeesController.mustByLoggedIn, RolesController.roles)
+router.get("/create-role", EmployeesController.mustByLoggedIn, RolesController.createRole)
+router.post("/save-role", EmployeesController.mustByLoggedIn, RolesController.saveRole)
+router.get("/edit-role/:id", EmployeesController.mustByLoggedIn, RolesController.editRole)
+router.post("/update-role", EmployeesController.mustByLoggedIn, RolesController.update)
+
+
 
 module.exports = router
