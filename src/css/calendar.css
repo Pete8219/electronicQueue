@@ -1,0 +1,138 @@
+:root {
+	--square-width: 2.5vw;
+
+	--square-font-size: 0.8vw;
+	--calendar-size: 70vw;
+	--calendar-day-size: 10vw;
+}
+
+.container {
+	width: var(--calendar-size);
+
+	height: auto;
+
+	padding-top: 3em;
+}
+
+.description {
+	width: var(--calendar-size);
+	margin: 0 auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	/* 	align-items: center; */
+	margin-bottom: 20px;
+	font-size: var(--square-font-size);
+	padding: 2em;
+}
+
+.description-weekend p:before {
+	content: '';
+
+	width: var(--square-width);
+	height: var(--square-width);
+	background: #c2c2c2;
+	float: left;
+	margin-right: 10px;
+	margin-top: -10px;
+}
+
+.description-busy p:before {
+	content: '';
+	width: var(--square-width);
+	height: var(--square-width);
+	background: red;
+	float: left;
+	margin-right: 10px;
+	margin-top: -10px;
+}
+
+.description-free p:before {
+	content: '';
+	width: var(--square-width);
+	height: var(--square-width);
+	background: #88f2ad;
+	float: left;
+	margin-right: 10px;
+	margin-top: -10px;
+}
+
+/*calendar section*/
+
+.calendar {
+	width: var(--calendar-size);
+	height: auto;
+
+	margin: 0 auto;
+	padding-bottom: 3vw;
+}
+
+.calendar-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+}
+
+.calendar-header-item {
+	display: flex;
+	flex-direction: column;
+	width: var(--calendar-day-size);
+	height: var(--calendar-day-size);
+	background: #98eced;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	font-size: 1.5vw;
+	font-weight: bold;
+	border: 1px solid #fff;
+}
+
+.calendar-body {
+	width: var(--calendar-size);
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	flex-wrap: wrap;
+}
+
+.empty-item {
+	width: var(--calendar-day-size);
+	height: var(--calendar-day-size);
+	background: #88f2ad;
+	border: 1px solid #fff;
+}
+
+.calendar-body-item {
+	display: flex;
+	flex-direction: column;
+
+	width: var(--calendar-day-size);
+	height: var(--calendar-day-size);
+	background: #88f2ad;
+	border: 1px solid #fff;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	font-size: 1vw;
+}
+
+.calendar-body-item:hover {
+	background: #72b589;
+	color: #fff;
+}
+
+.holiday,
+.holiday:hover {
+	background: #c2c2c2;
+	color: #000;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+a:hover {
+	text-decoration: none;
+}

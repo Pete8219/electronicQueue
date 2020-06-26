@@ -40,6 +40,10 @@ router.post("/save-role", EmployeesController.mustByLoggedIn, RolesController.sa
 router.get("/edit-role/:id", EmployeesController.mustByLoggedIn, RolesController.editRole)
 router.post("/update-role", EmployeesController.mustByLoggedIn, RolesController.update)
 
+//ticket section
 
+router.get("/service-calendar", function (req, res) {
+  res.render("calendar/calendar_days")
+})
 
 module.exports = router
