@@ -24,7 +24,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/">Электронная очередь</a>
+    <a class="navbar-brand" href="/admin">Электронная очередь</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
       aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -37,19 +37,19 @@
           <a class="nav-link" href="/admin">Главная <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/employees">Сотрудники</a>
+          <a class="nav-link" href="/admin/employees">Сотрудники</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/services">Услуги</a>
+          <a class="nav-link" href="/admin/services">Услуги</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/tickets">Тикеты</a>
+          <a class="nav-link" href="/admin/tickets">Тикеты</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/roles">Права пользователей</a>
+          <a class="nav-link" href="/admin/roles">Права пользователей</a>
         </li>
       </ul>
-      <form action="/logout" method="POST" class="mb-0 pt-2 pt-md-0">
+      <form action="/admin/logout" method="POST" class="mb-0 pt-2 pt-md-0">
         <div class="row align-items-center">
           <div class="col-md-auto">
             <button class="btn btn-primary btn-sm">Выход</button>

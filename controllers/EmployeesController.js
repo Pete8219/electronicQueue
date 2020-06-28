@@ -4,9 +4,9 @@ exports.mustByLoggedIn = function (req, res, next) {
   if (req.session.employee) {
     next()
   } else {
-    req.flash("errors", "Чтобы провести эту операцию вы должны войти в систему")
+    /*req.flash("errors", "Чтобы провести эту операцию вы должны войти в систему")*/
     req.session.save(function () {
-      res.redirect("/")
+      res.render("404")
     })
   }
 }

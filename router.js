@@ -5,6 +5,9 @@ const ServicesController = require("./controllers/ServicesController")
 const TicketsController = require("./controllers/TicketsController")
 const RolesController = require("./controllers/RolesController")
 
+
+
+
 //обработка машрутов во frontend
 router.get("/", EmployeesController.home)
 
@@ -13,7 +16,7 @@ router.get("/", EmployeesController.home)
 router.post("/login", EmployeesController.login)
 router.post("/logout", EmployeesController.logout)
 
-router.get("/admin", EmployeesController.mustByLoggedIn, EmployeesController.home)
+/* router.get("/admin", EmployeesController.home) */
 
 //управление сотрудниками
 router.get("/employees", EmployeesController.mustByLoggedIn, EmployeesController.viewEmployees)
@@ -42,8 +45,6 @@ router.post("/update-role", EmployeesController.mustByLoggedIn, RolesController.
 
 //ticket section
 
-router.get("/service-calendar", function (req, res) {
-  res.render("calendar/calendar_days")
-})
+
 
 module.exports = router

@@ -5,7 +5,7 @@
   <p class="lead">Зарегистрированные пользователи</p>
   <div class="row">
     <div class="col">
-      <a href="/create-role">
+      <a href="/admin/create-role">
         <button class="btn btn-success btn-right" type="button" style="float:right;">Новый</button>
       </a>
     </div>
@@ -25,7 +25,7 @@
         <%roles.forEach((item, id) =>{ %>
         <tr>
           <th scope="col"><%= id+1%></th>
-          <td><a href="/edit-role/<%= item._id%>">
+          <td><a href="/admin/edit-role/<%= item._id%>">
               <%= item.role%></a>
           </td>
           <td><%= item.title%></td>
