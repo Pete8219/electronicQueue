@@ -141,3 +141,7 @@ a.disabled {
 	pointer-events: none;
 	cursor: pointer;
 }
+
+button.right {
+	float: right;
+}
