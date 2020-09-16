@@ -1,5 +1,6 @@
 const servicesCollection = require('../db').db().collection('services')
 const employeesCollection = require('../db').db().collection('employees')
+const ObjectID = require("mongodb").ObjectID
 
 let Service = function (data) {
   this.data = data
@@ -42,5 +43,28 @@ Service.prototype.create = function () {
     servicesCollection.insertOne(this.data).then(() => resolve()).catch(() => reject('error'))
   })
 }
+
+
+Service.findById = function (id) {
+
+  return new Promise(async function (resolve, reject) {
+    if (typeof id != "string" || !ObjectID.isValid(id)) {
+      reject()
+      return
+    }
+    let service = await servicesCollection.findOne({
+      _id: new ObjectID(id)
+    })
+
+    if (service) {
+      resolve(service)
+    } else {
+      reject()
+    }
+
+
+  })
+}
+
 
 module.exports = Service

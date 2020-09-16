@@ -20,7 +20,7 @@
         <% service.forEach((item, id) =>{ %>
         <tr>
           <th scope="col"><%= id+1%></th>
-          <td><a href="#"><%= item["service-title"]%></a></td>
+          <td><a href="/admin/edit-service/<%= item._id%>"><%= item["service-title"]%></a></td>
           <td><%= item["service-time"]%></td>
         </tr>
         <% })%>

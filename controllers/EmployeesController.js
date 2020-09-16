@@ -67,7 +67,7 @@ exports.createEmployee = function (req, res) {
   employee
     .create()
     .then(function () {
-      res.redirect("/employees")
+      res.redirect("employees")
     })
     .catch(function () {
       res.send("Error")

@@ -2,6 +2,7 @@ const Service = require('../models/Service')
 
 
 
+
 exports.viewServices = async function (req, res) {
   try {
     let service = await Service.viewServices()
@@ -30,11 +31,24 @@ exports.newService = async function (req, res) {
 
 exports.createService = function (req, res) {
   let service = new Service(req.body)
-  console.log(req.body)
+
   service.create().then(function () {
     res.redirect('services')
   }).catch(function () {
     res.send('error')
   })
 
+}
+
+
+exports.editService = async function (req, res) {
+  try {
+    let service = await Service.findById(req.params.id)
+    console.log(service)
+    res.render("admin/edit-service", {
+      service
+    })
+  } catch {
+    res.render("404")
+  }
 }
