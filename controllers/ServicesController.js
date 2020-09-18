@@ -44,11 +44,24 @@ exports.createService = function (req, res) {
 exports.editService = async function (req, res) {
   try {
     let service = await Service.findById(req.params.id)
-    console.log(service)
+    let employees = await Service.newService();
+
     res.render("admin/edit-service", {
-      service
+      service,
+      employees
     })
   } catch {
     res.render("404")
   }
+}
+
+exports.update = function (req, res) {
+  let service = new Service(req.body)
+  console.log(req.body)
+  service.update().then(function () {
+    res.redirect("services")
+  }).catch(function () {
+    res.send('error')
+  })
+
 }

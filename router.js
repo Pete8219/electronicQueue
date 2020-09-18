@@ -29,6 +29,7 @@ router.post("/employee-create", EmployeesController.mustByLoggedIn, EmployeesCon
 router.get("/services", EmployeesController.mustByLoggedIn, ServicesController.viewServices)
 router.get("/create-service", EmployeesController.mustByLoggedIn, ServicesController.newService)
 router.get("/edit-service/:id", EmployeesController.mustByLoggedIn, ServicesController.editService)
+router.post("/update-service", EmployeesController.mustByLoggedIn, ServicesController.update)
 
 router.post("/create-service", EmployeesController.mustByLoggedIn, ServicesController.createService)
 

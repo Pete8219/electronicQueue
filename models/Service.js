@@ -66,5 +66,23 @@ Service.findById = function (id) {
   })
 }
 
+Service.prototype.update = function () {
+
+  return new Promise((resolve, reject) => {
+    servicesCollection.updateOne({
+      _id: new ObjectID(this.data.id)
+    }, {
+      $set: {
+        'service-title': this.data["service-title"],
+
+        'service-time': this.data["service-time"]
+
+      }
+
+    }).then(() => resolve()).catch(() => reject('error'))
+  })
+}
+
+
 
 module.exports = Service
