@@ -12,12 +12,11 @@
       <label for="employee_id">Кто оказывает услугу</label>
       <select class="form-control" id="employee_id" name="employee_id">
         <option>Выберите сотрудника</option>
-        <%console.log(service.employee_id)%>
         <% employees.forEach(function(item) {%>
-        <% if (service.employee_id == item._id) { console.log(item._id, service.employee_id) %>
+        <% if (item._id == service.employee_id) { %>
         <option selected value="<%= item._id %>"><%= item.employee %></option>
-        <% }%>
-        <option value="<%= item._id %>"><%= item.employee %></option>
+        <% } else {%>
+        <option value="<%= item._id %>"><%= item.employee %></option><%}%>
         <% })%>
       </select>
     </div>

@@ -74,6 +74,7 @@ Service.prototype.update = function () {
     }, {
       $set: {
         'service-title': this.data["service-title"],
+        employee_id: this.data.employee_id,
 
         'service-time': this.data["service-time"]
 
