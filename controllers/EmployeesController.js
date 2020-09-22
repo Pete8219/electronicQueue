@@ -87,3 +87,35 @@ exports.home = function (req, res) {
   }
 
 }
+
+exports.editEmployee = async function (req, res) {
+  try {
+
+    let employee = await new Employee.findById(req.params.id);
+    console.log(employee)
+    res.render("admin/edit-employee", {
+
+      employee
+    })
+  } catch {
+    res.render("404")
+
+  }
+
+}
+
+
+
+
+
+
+exports.update = function (req, res) {
+  let employee = new Employee(req.body)
+  console.log(employee)
+
+  employee.update().then(function () {
+    res.redirect("/admin/employees")
+  }).catch(function () {
+    res.send('error')
+  })
+}

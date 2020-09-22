@@ -2,6 +2,7 @@ const employeesCollection = require("../db")
   .db()
   .collection("employees")
 const bcrypt = require("bcryptjs")
+const ObjectID = require('mongodb').ObjectID;
 
 let Employee = function (data) {
   this.data = data
@@ -61,6 +62,51 @@ Employee.prototype.login = function () {
       .catch(function () {
         reject("Please try again later")
       })
+  })
+}
+
+
+Employee.findById = function (id) {
+
+  return new Promise(async function (resolve, reject) {
+    if (typeof id != "string" || !ObjectID.isValid(id)) {
+      reject()
+      return
+    }
+    let employee = await employeesCollection.findOne({
+      _id: new ObjectID(id)
+    })
+
+    if (employee) {
+      resolve(employee)
+    } else {
+      reject()
+    }
+
+
+  })
+}
+
+Employee.prototype.update = function () {
+  return new Promise((resolve, reject) => {
+    let salt = bcrypt.genSaltSync(10)
+    this.data.password = bcrypt.hashSync(this.data.password, salt)
+
+
+    employeesCollection.updateOne({
+      _id: new ObjectID(this.data.id)
+    }, {
+      $set: {
+        employee: this.data.employee,
+        employeeCab: this.data.employeeCab,
+        dateStart: this.data.dateStart,
+        dateEnd: this.data.dateStart,
+        login: this.data.login,
+        role: this.data.role,
+        password: this.data.password
+
+      }
+    }).then(() => resolve()).catch(() => reject('error'))
   })
 }
 

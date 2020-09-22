@@ -20,6 +20,8 @@ router.post("/logout", EmployeesController.logout)
 
 //управление сотрудниками
 router.get("/employees", EmployeesController.mustByLoggedIn, EmployeesController.viewEmployees)
+router.get("/employee/:id/edit", EmployeesController.mustByLoggedIn, EmployeesController.editEmployee)
+router.post("/employee/update", EmployeesController.mustByLoggedIn, EmployeesController.update)
 
 router.get("/employee-create", EmployeesController.mustByLoggedIn, EmployeesController.newEmployee)
 
