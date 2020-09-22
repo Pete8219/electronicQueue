@@ -57,11 +57,34 @@ exports.editService = async function (req, res) {
 
 exports.update = function (req, res) {
   let service = new Service(req.body)
-  console.log(req.body)
+
   service.update().then(function () {
     res.redirect("services")
   }).catch(function () {
     res.send('error')
   })
+}
 
+exports.deleteService = async function (req, res) {
+  try {
+    let service = await Service.findById(req.params.id)
+    res.render("admin/service-delete", {
+      service
+    })
+
+  } catch {
+    res.render("404")
+  }
+}
+
+exports.delete = function (req, res) {
+
+  Service.delete(req.params.id).then(() => {
+    res.redirect("/admin/services")
+
+
+  }).catch(() => {
+    req.session.save(() => res.send('error'))
+
+  })
 }

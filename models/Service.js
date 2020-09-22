@@ -86,4 +86,25 @@ Service.prototype.update = function () {
 
 
 
+Service.delete = function (serviceIdToDelete) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let service = await Service.findById(serviceIdToDelete)
+      if (service) {
+        console.log(service)
+        await servicesCollection.deleteOne({
+          _id: new ObjectID(serviceIdToDelete)
+        })
+        resolve()
+      } else {
+        reject()
+      }
+    } catch {
+      reject()
+    }
+  })
+}
+
+
+
 module.exports = Service

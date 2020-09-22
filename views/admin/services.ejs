@@ -14,6 +14,8 @@
           <th scope="col">#</th>
           <th scope="col">Услуга</th>
           <th scope="col">Время, мин</th>
+          <th scope="col"></th>
+
         </tr>
       </thead>
       <tbody>
@@ -22,6 +24,12 @@
           <th scope="col"><%= id+1%></th>
           <td><a href="/admin/edit-service/<%= item._id%>"><%= item["service-title"]%></a></td>
           <td><%= item["service-time"]%></td>
+          <td>
+            <a href="/admin/services/<%= item._id%>/delete/confirm"><button class="btn btn-warning btn-right"
+                type="button">Удалить</button></a>
+
+
+          </td>
         </tr>
         <% })%>
 

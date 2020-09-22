@@ -29,9 +29,12 @@ router.post("/employee-create", EmployeesController.mustByLoggedIn, EmployeesCon
 router.get("/services", EmployeesController.mustByLoggedIn, ServicesController.viewServices)
 router.get("/create-service", EmployeesController.mustByLoggedIn, ServicesController.newService)
 router.get("/edit-service/:id", EmployeesController.mustByLoggedIn, ServicesController.editService)
-router.post("/update-service", EmployeesController.mustByLoggedIn, ServicesController.update)
 
+router.post("/update-service", EmployeesController.mustByLoggedIn, ServicesController.update)
+router.post("/services/:id/delete", EmployeesController.mustByLoggedIn, ServicesController.delete)
+router.get("/services/:id/delete/confirm", EmployeesController.mustByLoggedIn, ServicesController.deleteService)
 router.post("/create-service", EmployeesController.mustByLoggedIn, ServicesController.createService)
+
 
 //управление разделом Талоны
 router.get("/tickets", EmployeesController.mustByLoggedIn, TicketsController.viewAllTickets)

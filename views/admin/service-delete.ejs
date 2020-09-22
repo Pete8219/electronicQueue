@@ -1,0 +1,22 @@
+<%- include('../includes/header')%>
+
+
+<div class="container">
+  <form action="/admin/services/<%= service._id%>/delete" method="POST">
+    <h2>Вы уверены, что хотите удалить услугу</h2></br>
+    <h4>"<%= service["service-title"] %>"</h4>
+
+
+
+    <div class="form-group">
+      <input type="hidden" name="id" value="<%= service._id%>">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-warning">Удалить</button>
+      <button type="reset" class="btn btn-success">отмена</button>
+    </div>
+
+  </form>
+</div>
+
+<%- include('../includes/footer')%>
