@@ -1,4 +1,5 @@
 const Employee = require("../models/Employee")
+const Role = require("../models/Role")
 
 exports.mustByLoggedIn = function (req, res, next) {
   if (req.session.employee) {
@@ -92,10 +93,12 @@ exports.editEmployee = async function (req, res) {
   try {
 
     let employee = await new Employee.findById(req.params.id);
-    console.log(employee)
+    let roles = await new Employee.getRoles();
+    /* console.log(employee) */
     res.render("admin/edit-employee", {
 
-      employee
+      employee,
+      roles
     })
   } catch {
     res.render("404")
@@ -111,7 +114,7 @@ exports.editEmployee = async function (req, res) {
 
 exports.update = function (req, res) {
   let employee = new Employee(req.body)
-  console.log(employee)
+  /*  console.log(employee) */
 
   employee.update().then(function () {
     res.redirect("/admin/employees")
