@@ -1,4 +1,5 @@
 const Service = require('../models/Service')
+const Employee = require('../models/Employee')
 
 
 
@@ -14,6 +15,37 @@ exports.viewServices = async function (req, res) {
     res.render('404')
   }
 
+}
+
+exports.home = async function (req, res) {
+  try {
+    let services = await Service.viewServices()
+    res.render("public/services-page", {
+      services
+    })
+  } catch {
+    res.render("404")
+  }
+}
+
+exports.calendar = async function (req, res) {
+  try {
+    let service = await Service.findById(req.params.id);
+    console.log(service.employee_id)
+    let employees = await Employee.findById(service.employee_id);
+
+
+    res.render("calendar/calendar", {
+      service,
+      employee: employees.employee,
+      cabinet: employees.employeeCab,
+      dateStart: employees.dateStart,
+      dateEnd: employees.dateEnd
+    })
+
+  } catch {
+    res.render("404")
+  }
 }
 
 exports.newService = async function (req, res) {

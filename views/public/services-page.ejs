@@ -1,20 +1,17 @@
 <%- include("./page-header")%>
 <div class="container">
   <h4>Выберите интересующую Вас услугу</h4>
-  <div class="services">
-    <div class="service-item">
-      Принятие на учет: малоимущих, коренных малочисленных народов Севера, реабилитированных граждан
 
-    </div>
-    <div class="service-item">
-      Перерегистрация граждан состоящих на учете нуждающихся в жилых помещениях
-    </div>
-    <div class="service-item">
-      Приватизация/Деприватизация жилья
-    </div>
-    <div class="service-item">
-      Программа "Работники бюджетной сферы"
-    </div>
+  <div class="services">
+    <% services.forEach((item) => {%>
+    <a href="/calendar/<%= item._id%>/service">
+      <div class="service-item">
+        <%= item["service-title"]%>
+      </div>
+    </a>
+    <% })%>
+
+
   </div>
 </div>
 <%- include("./page-footer")%>
