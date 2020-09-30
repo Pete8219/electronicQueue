@@ -129,3 +129,29 @@ body {
 .sing-in {
 	float: right;
 }
+
+.time-box {
+	display: inline-block;
+	padding: 20px;
+	margin: 5px;
+	width: 45%;
+	height: auto;
+	background-color: #02a9f0;
+	text-align: center;
+	color: #fff;
+	font-size: 1.3em;
+}
+
+.time-box > p {
+	font-size: 15px;
+	color: #fff;
+}
+
+.time-box.holiday {
+	background-color: grey;
+}
+
+.time-box.holiday > p {
+	/* 	font-size: 15px;
+	color: #fff; */
+}

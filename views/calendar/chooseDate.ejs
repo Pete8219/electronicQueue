@@ -1,0 +1,28 @@
+<%- include("../public/page-header")%>
+<div class="container" style="text-align:center;">
+  <h4>Выберите дату, на которую вы хотите записаться для получения услуги</h4>
+  <h3><%= service["service-title"]%></h3>
+
+  <% 
+  
+  let monthArray = [
+        'января', 'февраля', 'марта', "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"
+      ]
+  let time = new Date()
+  let day = time.getDay();    
+  
+  for (i= 0; i < 30; i++) {
+    let time = new Date()
+    let month = time.getMonth() + 1;
+  
+    time.setDate(time.getDate() + i)
+
+    if(time.getDay() !== 0 && time.getDay() !== 1&& time.getDay() !== 6) { %>
+  <div class="time-box"><%= (time.getDate()+' '+ monthArray[month]) %>
+    <p>Осталось талонов 2</p>
+  </div>
+  <%}%>
+<%}%>
+
+</div>
+<%- include("../public/page-footer")%>

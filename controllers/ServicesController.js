@@ -1,5 +1,6 @@
 const Service = require('../models/Service')
 const Employee = require('../models/Employee')
+const Ticket = require('../models/Ticket')
 
 
 
@@ -31,16 +32,21 @@ exports.home = async function (req, res) {
 exports.calendar = async function (req, res) {
   try {
     let service = await Service.findById(req.params.id);
-    console.log(service.employee_id)
+    console.log(service)
     let employees = await Employee.findById(service.employee_id);
+    console.log(employees)
+    let tickets = await Ticket.findAllTicketsById(employees.employeeCab)
+    console.log(tickets)
 
 
-    res.render("calendar/calendar", {
+
+    res.render("calendar/chooseDate", {
       service,
       employee: employees.employee,
       cabinet: employees.employeeCab,
       dateStart: employees.dateStart,
-      dateEnd: employees.dateEnd
+      dateEnd: employees.dateEnd,
+      tickets
     })
 
   } catch {
