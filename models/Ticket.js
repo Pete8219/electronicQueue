@@ -20,12 +20,13 @@ Ticket.viewTickets = async function () {
 
 Ticket.findAllTicketsById = function (data) {
   return new Promise(async function (resolve, reject) {
+
+    const projection = {
+      _id: 0
+    }
     let tickets = await ticketsCollection.find({
       cab: data
-    }, {
-      employee: 0,
-      _id: 0
-    }).toArray()
+    }).project(projection).toArray()
     if (tickets) {
       resolve(tickets)
     } else {

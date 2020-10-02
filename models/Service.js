@@ -66,6 +66,28 @@ Service.findById = function (id) {
   })
 }
 
+Service.findServiceAndEmployee = function (id) {
+  return new Promise(async function (resolve, reject) {
+    if (typeof id != "string" || !ObjectID.isValid(id)) {
+      reject()
+      return
+    }
+    let service = await servicesCollection.aggregate([{
+      lookup: {
+        from: "employees",
+        localfield: "employee_id",
+        foreignField: "_id",
+        as: "employee"
+      }
+    }]).toArray()
+    if (service) {
+      resolve(service)
+    } else {
+      reject()
+    }
+  })
+}
+
 
 
 Service.prototype.update = function () {

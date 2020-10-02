@@ -31,12 +31,15 @@ exports.home = async function (req, res) {
 
 exports.calendar = async function (req, res) {
   try {
-    let service = await Service.findById(req.params.id);
+
+    let service = await Service.findServiceAndEmployee(req.params.id)
     console.log(service)
-    let employees = await Employee.findById(service.employee_id);
-    console.log(employees)
+    /*     let service = await Service.findById(req.params.id);
+        console.log(service)
+        let employees = await Employee.findById(service.employee_id);
+        console.log(employees) */
     let tickets = await Ticket.findAllTicketsById(employees.employeeCab)
-    console.log(tickets)
+
 
 
 

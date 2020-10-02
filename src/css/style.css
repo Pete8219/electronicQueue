@@ -134,12 +134,13 @@ body {
 	display: inline-block;
 	padding: 20px;
 	margin: 5px;
-	width: 45%;
+	width: 15%;
 	height: auto;
 	background-color: #02a9f0;
 	text-align: center;
 	color: #fff;
 	font-size: 1.3em;
+	border-radius: 15px;
 }
 
 .time-box > p {

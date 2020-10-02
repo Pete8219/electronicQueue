@@ -12,6 +12,17 @@
   let day = time.getDay();    
   
   for (i= 0; i < 30; i++) {
+    if(tickets[i]) {
+      if(tickets[i].countTicket.length < 8) {
+        quantityTickets = 8 - tickets[i].countTicket.length;
+      } else {
+        quantityTickets = 0;
+      }
+    } else {
+      quantityTickets = 8;
+    }
+    
+
     let time = new Date()
     let month = time.getMonth() + 1;
   
@@ -19,10 +30,10 @@
 
     if(time.getDay() !== 0 && time.getDay() !== 1&& time.getDay() !== 6) { %>
   <div class="time-box"><%= (time.getDate()+' '+ monthArray[month]) %>
-    <p>Осталось талонов 2</p>
+    <p>Осталось талонов <%= quantityTickets%></p>
   </div>
   <%}%>
-<%}%>
+      <%}%>
 
 </div>
 <%- include("../public/page-footer")%>
