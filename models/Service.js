@@ -73,13 +73,31 @@ Service.findServiceAndEmployee = function (id) {
       return
     }
     let service = await servicesCollection.aggregate([{
-      lookup: {
-        from: "employees",
-        localfield: "employee_id",
-        foreignField: "_id",
-        as: "employee"
+        $match: {
+          _id: new ObjectID(id)
+        }
+      },
+      {
+        $lookup: {
+          from: "employees",
+          localField: "employee_id",
+          foreignField: "_id",
+          as: "employee"
+        }
+      },
+      {
+        $project: {
+          "service-title": 1,
+          employeeCab: 1,
+          dateStart: 1,
+          dateEnd: 1,
+          employee_id: {
+            $arrayElemAt: ["$employee", 0]
+          }
+
+        }
       }
-    }]).toArray()
+    ]).toArray()
     if (service) {
       resolve(service)
     } else {
