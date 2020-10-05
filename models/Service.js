@@ -3,7 +3,24 @@ const employeesCollection = require('../db').db().collection('employees')
 const ObjectID = require("mongodb").ObjectID
 
 let Service = function (data) {
-  this.data = data
+  this.data = data,
+    this.errors = []
+
+
+}
+
+Service.prototype.cleanUp = function () {
+  if (typeof this.data.title != "string") {
+    this.data.title = ""
+  }
+
+  this.data = {
+    title: this.data.title,
+    employee: ObjectID(this.data.employee),
+    time: this.data.time
+
+
+  }
 }
 
 
@@ -39,8 +56,18 @@ Service.newService = function () {
 
 
 Service.prototype.create = function () {
+
+
   return new Promise((resolve, reject) => {
-    servicesCollection.insertOne(this.data).then(() => resolve()).catch(() => reject('error'))
+    this.cleanUp();
+    if (!this.errors.lenght) {
+      servicesCollection.insertOne(this.data).then(() => resolve()).catch(() => {
+        this.errors.push("Пожалуйста заполните поле Наименование услуги")
+        reject(this.errors)
+      })
+    } else {
+      reject(this.errors)
+    }
   })
 }
 
@@ -68,42 +95,59 @@ Service.findById = function (id) {
 
 Service.findServiceAndEmployee = function (id) {
   return new Promise(async function (resolve, reject) {
-    if (typeof id != "string" || !ObjectID.isValid(id)) {
-      reject()
-      return
-    }
-    let service = await servicesCollection.aggregate([{
-        $match: {
-          _id: new ObjectID(id)
-        }
-      },
-      {
-        $lookup: {
-          from: "employees",
-          localField: "employee_id",
-          foreignField: "_id",
-          as: "employee"
-        }
-      },
-      {
-        $project: {
-          "service-title": 1,
-          employeeCab: 1,
-          dateStart: 1,
-          dateEnd: 1,
-          employee_id: {
-            $arrayElemAt: ["$employee", 0]
-          }
-
-        }
+      if (typeof id != "string" || !ObjectID.isValid(id)) {
+        reject()
+        return
       }
-    ]).toArray()
-    if (service) {
-      resolve(service)
-    } else {
-      reject()
+      let services = await servicesCollection.aggregate([{
+          $match: {
+            _id: new ObjectID(id)
+          }
+        },
+        {
+          $lookup: {
+            from: "employees",
+            localField: 'employee',
+            foreignField: '_id',
+            as: "employeeData"
+          }
+        },
+        {
+          $project: {
+            title: 1,
+            time: 1,
+            employee: {
+              $arrayElemAt: ["$employeeData", 0]
+            },
+
+
+          }
+        }
+      ]).toArray()
+
+
+      services = services.map(function (service) {
+        service.employee = {
+          id: service.employee._id,
+          employee: service.employee.employee,
+          employeeCab: service.employee.employeeCab,
+          dateStart: service.employee.dateStart,
+          dateEnd: service.employee.dateEnd
+        }
+
+        return service
+      })
+
+
+      if (services) {
+
+        resolve(services[0])
+      } else {
+        reject()
+      }
     }
-  })
+
+  )
 }
 
 

@@ -3,12 +3,12 @@
 <div class="container">
   <form action="/admin/create-service" method="POST">
     <div class="form-group">
-      <label for="service-title">Наименование услуги</label>
-      <input class="form-control" type="text" name="service-title" id="service-title" />
+      <label for="title">Наименование услуги</label>
+      <input class="form-control" type="text" name="title" id="title" />
     </div>
     <div class="form-group">
-      <label for="employee_id">Кто оказывает услугу</label>
-      <select class="form-control" id="employee_id" name="employee_id">
+      <label for="employee">Кто оказывает услугу</label>
+      <select class="form-control" id="employee" name="employee">
         <option selected>Выберите сотрудника</option>
         <% service.forEach(function(item) {%>
         <option value="<%= item._id %>"><%= item.employee %></option>
@@ -17,7 +17,7 @@
     </div>
     <div class="form-group">
       <label for="service-time">Время, мин</label>
-      <input class="form-control col-sm-2" type="time" name="service-time" id="service-time" />
+      <input class="form-control col-sm-2" type="time" name="time" id="time" />
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-success" style="float:right;">Сохранить</button>

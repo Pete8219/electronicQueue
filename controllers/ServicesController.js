@@ -32,24 +32,22 @@ exports.home = async function (req, res) {
 exports.calendar = async function (req, res) {
   try {
 
-    let service = await Service.findServiceAndEmployee(req.params.id)
-    console.log(service)
+    let services = await Service.findServiceAndEmployee(req.params.id)
+
+    console.log(services)
     /*     let service = await Service.findById(req.params.id);
         console.log(service)
         let employees = await Employee.findById(service.employee_id);
         console.log(employees) */
-    let tickets = await Ticket.findAllTicketsById(employees.employeeCab)
+    let tickets = await Ticket.findAllTicketsById(services.employee.employeeCab)
 
-
+    console.log(tickets)
 
 
     res.render("calendar/chooseDate", {
-      service,
-      employee: employees.employee,
-      cabinet: employees.employeeCab,
-      dateStart: employees.dateStart,
-      dateEnd: employees.dateEnd,
+      services,
       tickets
+
     })
 
   } catch {
@@ -73,7 +71,8 @@ exports.newService = async function (req, res) {
 exports.createService = function (req, res) {
   let service = new Service(req.body)
 
-  service.create().then(function () {
+  service.create().then(function (data) {
+    console.log(data)
     res.redirect('services')
   }).catch(function () {
     res.send('error')

@@ -1,7 +1,7 @@
 <%- include("../public/page-header")%>
 <div class="container" style="text-align:center;">
   <h4>Выберите дату, на которую вы хотите записаться для получения услуги</h4>
-  <h3><%= service["service-title"]%></h3>
+  <h3><%= services.title%></h3>
 
   <% 
   
@@ -24,7 +24,7 @@
     
 
     let time = new Date()
-    let month = time.getMonth() + 1;
+    let month = time.getMonth();
   
     time.setDate(time.getDate() + i)
 
