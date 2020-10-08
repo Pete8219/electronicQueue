@@ -94,7 +94,7 @@ exports.editEmployee = async function (req, res) {
 
     let employee = await new Employee.findById(req.params.id);
     let roles = await new Employee.getRoles();
-    /* console.log(employee) */
+
     res.render("admin/edit-employee", {
 
       employee,

@@ -2,9 +2,9 @@
 
 
 <div class="container">
-  <form action="/admin/services/<%= service._id%>/delete" method="POST">
+  <form action="/admin/service/<%= service._id%>/delete" method="POST">
     <h2>Вы уверены, что хотите удалить услугу</h2></br>
-    <h4>"<%= service["service-title"] %>"</h4>
+    <h4>"<%= service.title %>"</h4>
 
 
 
@@ -13,10 +13,16 @@
     </div>
     <div class="form-group">
       <button type="submit" class="btn btn-warning">Удалить</button>
-      <button type="reset" class="btn btn-success">отмена</button>
+
+
     </div>
 
+
+
   </form>
+
+  <form action="/admin/services" method="GET">
+    <input type="submit" class="btn btn-success" value="Отмена"></form>
 </div>
 
 <%- include('../includes/footer')%>
