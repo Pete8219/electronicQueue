@@ -102,6 +102,24 @@ Employee.getRoles = function () {
   })
 }
 
+Employee.createSelectList = function () {
+  return new Promise(async function (resolve, reject) {
+
+    let employees = await employeesCollection.find().project({
+      _id: 1,
+      employee: 1,
+    }).toArray()
+
+    if (employees) {
+      resolve(employees)
+    } else {
+      reject()
+    }
+  })
+
+
+}
+
 Employee.prototype.update = function () {
 
   return new Promise((resolve, reject) => {

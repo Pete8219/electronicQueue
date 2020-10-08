@@ -30,7 +30,7 @@ router.post("/employee-create", EmployeesController.mustByLoggedIn, EmployeesCon
 //управление разделом Услуги
 router.get("/services", EmployeesController.mustByLoggedIn, ServicesController.viewServices)
 router.get("/create-service", EmployeesController.mustByLoggedIn, ServicesController.newService)
-router.get("/edit-service/:id", EmployeesController.mustByLoggedIn, ServicesController.editService)
+router.get("/edit-service/:id", EmployeesController.mustByLoggedIn, ServicesController.editService, EmployeesController.createSelectList)
 
 router.post("/update-service", EmployeesController.mustByLoggedIn, ServicesController.update)
 router.post("/services/:id/delete", EmployeesController.mustByLoggedIn, ServicesController.delete)

@@ -29,28 +29,27 @@ exports.home = async function (req, res) {
   }
 }
 
-exports.calendar = async function (req, res) {
+exports.calendar = async function (req, res, next) {
   try {
 
     let services = await Service.findServiceAndEmployee(req.params.id)
+    if (services) {
 
-    console.log(services)
-    /*     let service = await Service.findById(req.params.id);
-        console.log(service)
-        let employees = await Employee.findById(service.employee_id);
-        console.log(employees) */
-    let tickets = await Ticket.findAllTicketsById(services.employee.employeeCab)
+      req.params = {
+        _id: services._id,
+        title: services.title,
+        employee_id: services.employee.id,
+        employee: services.employee.employee,
+        employeeCab: services.employee.employeeCab,
+        dateStart: services.employee.dateStart,
+        dateEnd: services.employee.dateEnd
+      }
 
-    console.log(tickets)
-
-
-    res.render("calendar/chooseDate", {
-      services,
-      tickets
-
-    })
+      next()
+    }
 
   } catch {
+    console.log("we are in service controller")
     res.render("404")
   }
 }
@@ -81,15 +80,22 @@ exports.createService = function (req, res) {
 }
 
 
-exports.editService = async function (req, res) {
+exports.editService = async function (req, res, next) {
   try {
     let service = await Service.findById(req.params.id)
-    let employees = await Service.newService();
 
-    res.render("admin/edit-service", {
-      service,
-      employees
-    })
+    if (service) {
+
+      req.params = {
+        _id: service._id,
+        title: service.title,
+        employeeId: String(service.employee),
+        time: service.time
+      }
+    }
+
+    next()
+
   } catch {
     res.render("404")
   }

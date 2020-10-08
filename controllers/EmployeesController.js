@@ -107,7 +107,20 @@ exports.editEmployee = async function (req, res) {
 
 }
 
+exports.createSelectList = async function (req, res) {
 
+  try {
+    let employees = await new Employee.createSelectList()
+
+    res.render("admin/edit-service", {
+      service: req.params,
+      employees
+
+    })
+  } catch {
+    res.render("404")
+  }
+}
 
 
 

@@ -159,10 +159,9 @@ Service.prototype.update = function () {
       _id: new ObjectID(this.data.id)
     }, {
       $set: {
-        'service-title': this.data["service-title"],
-        employee_id: this.data.employee_id,
-
-        'service-time': this.data["service-time"]
+        title: this.data.title,
+        employee: ObjectID(this.data.employee),
+        time: this.data.time
 
       }
 

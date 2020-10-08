@@ -1,6 +1,22 @@
 const Ticket = require("../models/Ticket")
 
+exports.findAllTiketsByService = async function (req, res) {
+  try {
+    console.log(req.params)
+    let tickets = await Ticket.findAllTicketsById(req.params.employeeCab)
+    console.log(tickets)
+    res.render("calendar/chooseDate", {
+      services: req.params,
+      tickets
 
+    })
+
+  } catch {
+    console.log("we are in tickets controller")
+    res.render("404")
+  }
+
+}
 
 exports.viewAllTickets = async function (req, res) {
 
