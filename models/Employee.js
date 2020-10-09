@@ -29,6 +29,8 @@ Employee.prototype.create = function () {
   return new Promise((resolve, reject) => {
     let salt = bcrypt.genSaltSync(10)
     this.data.password = bcrypt.hashSync(this.data.password, salt)
+    this.data.dateStart = this.data.dateStart
+    this.data.dateEnd = this.data.dateEnd
     employeesCollection
       .insertOne(this.data)
       .then(() => resolve())
@@ -129,17 +131,15 @@ Employee.prototype.update = function () {
         _id: new ObjectID(this.data.id)
 
       }).then((employee) => {
-        /* console.log(employee) */
         if (employee) {
           if (this.data.password == '' || this.data.password == undefined) {
             this.data.password = employee.password
-            console.log("Мы здесь")
+
 
           } else {
             let salt = bcrypt.genSaltSync(10)
             this.data.password = bcrypt.hashSync(this.data.password, salt)
-            console.log(employee.password, this.data.password)
-            console.log("Если пароль изменен")
+
           }
 
         } else {
@@ -154,7 +154,7 @@ Employee.prototype.update = function () {
             employee: this.data.employee,
             employeeCab: this.data.employeeCab,
             dateStart: this.data.dateStart,
-            dateEnd: this.data.dateStart,
+            dateEnd: this.data.dateEnd,
             login: this.data.login,
             role: this.data.role_id,
             password: this.data.password

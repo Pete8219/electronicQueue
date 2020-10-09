@@ -14,10 +14,12 @@ Service.prototype.cleanUp = function () {
     this.data.title = ""
   }
 
+
+
   this.data = {
     title: this.data.title,
     employee: ObjectID(this.data.employee),
-    time: this.data.time
+    time: this.data.time.slice(0, 2)
 
 
   }
