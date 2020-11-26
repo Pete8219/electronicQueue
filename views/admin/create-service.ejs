@@ -7,7 +7,7 @@
       <input class="form-control" type="text" name="title" id="title" />
     </div>
     <div class="form-group">
-      <label for="employee">Кто оказывает услугу</label>
+      <label for="employee">Сотрудник, ведущий прием</label>
       <select class="form-control" id="employee" name="employee">
         <option selected>Выберите сотрудника</option>
         <% service.forEach(function(item) {%>
@@ -16,9 +16,10 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="service-time">Время, мин</label>
-      <input class="form-control col-sm-2" type="time" name="time" id="time" />
+      <label for="service-time">Время оказания услуги, мин</label>
+      <input class="form-control col-sm-1" type="text" name="time" id="time" />
     </div>
+  
     <div class="form-group">
       <button type="submit" class="btn btn-success" style="float:right;">Сохранить</button>
     </div>

@@ -32,10 +32,10 @@ exports.home = async function (req, res) {
 exports.calendar = async function (req, res, next) {
   try {
 
-    let services = await Service.findServiceAndEmployee(req.params.id)
-    if (services) {
+    let services = await Service.findServiceAndEmployee(req.params.id) /*Передаем в параметрах id-услуги в метод модели*/
+    if (services) { /* проверяем есть ли какой то результат в ответе предыдущей функции */
 
-      req.params = {
+      req.params = { /* формируем новый массив параметров запроса  */
         _id: services._id,
         title: services.title,
         employee_id: services.employee.id,
@@ -45,7 +45,7 @@ exports.calendar = async function (req, res, next) {
         dateEnd: services.employee.dateEnd
       }
 
-      next()
+      next() /* передаем управление следующей функции , указанной в параметрах запроса файла publicRouter ->TicketsController.findAllTiketsByService */
     }
 
   } catch {
@@ -57,6 +57,7 @@ exports.calendar = async function (req, res, next) {
 exports.newService = async function (req, res) {
   try {
     let service = await Service.newService()
+        
     res.render('admin/create-service', {
       service: service
     })

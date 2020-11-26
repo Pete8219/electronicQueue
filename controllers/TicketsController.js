@@ -1,15 +1,23 @@
 const Ticket = require("../models/Ticket")
 
-exports.findAllTiketsByService = async function (req, res) {
+exports.findAllTiketsByService = async function (req, res) { /* функция обработки запроса при выборе услуги на главной экране */
   try {
-    console.log(req.params)
-    let tickets = await Ticket.findAllTicketsById(req.params.employeeCab)
+    console.log(req.params) /*  вывод параметров запроса */
+    let tickets = await Ticket.findAllTicketsById(req.params._id) /* вызов функции с передачей номера кабинета в качестве параметра */
     console.log(tickets)
-    res.render("calendar/chooseDate", {
-      services: req.params,
-      tickets
 
-    })
+    if(tickets) {
+      res.render("calendar/chooseDate", {
+        services: req.params,
+        tickets
+  
+      })
+
+
+    } else {
+      res.send("Такой страницы не существует")
+    }
+    
 
   } catch {
     console.log("we are in tickets controller")
