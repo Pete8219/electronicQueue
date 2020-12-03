@@ -18,18 +18,26 @@ Ticket.viewTickets = async function () {
   })
 }
 
-Ticket.findAllTicketsById = function (data) { /* в качестве параметра data  - номер кабинета */
-/* console.log(data) */
+Ticket.findAllTicketsById = function (id) { /* в качестве параметра data  - id-услуги */
+  
 
   return new Promise(async function (resolve, reject) {
+    let tickets = await ticketsCollection.find({
+      serviceId: new ObjectID(id)
+    }).toArray()
+    console.log(tickets)
 
-    const projection = {
-      _id: 0
+/*     const projection = {
+      _id: 1
     }
     let tickets = await ticketsCollection.find({ /* проводим поиск записей по id - услуги */
-      serviceId: data
-    }).project(projection).toArray()
+    /*   serviceId: new ObjectID(id)
+    }).project(projection).toArray()  */
+     
+ /*    console.log(tickets[1]) */
+   
     if (tickets) {
+      /* console.log(tickets) */
       resolve(tickets)
     } else {
       console.log('No match found')

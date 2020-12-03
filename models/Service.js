@@ -80,7 +80,7 @@ Service.prototype.create = function () {
 
 
 Service.findById = function (id) {
-
+  
   return new Promise(async function (resolve, reject) {
     if (typeof id != "string" || !ObjectID.isValid(id)) {
       reject()

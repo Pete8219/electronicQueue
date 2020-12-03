@@ -1,48 +1,17 @@
 <%- include("../public/page-header")%>
+<% console.log(services) %>
+
 <div class="container" style="text-align:center;">
   <h4>Выберите дату, на которую вы хотите записаться для получения услуги</h4>
   <h3><%= services.title%></h3>
+  <h3><%= tickets[0].countTickets%></h3>
+  <%
+  if(tickets[0].countTickets.length < 8) {
+    counter = 8 - tickets[0].countTickets.length;
+  } %>
 
-  <% 
-  
-  let monthArray = [
-        'января', 'февраля', 'марта', "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"
-      ]
-  let time = new Date()
-  let day = time.getDay();    
-  
-  for (i= 0; i < 30; i++) {
-    if(tickets[i]) {
-      if(tickets[i].countTicket.length < 8) {
-        quantityTickets = 8 - tickets[i].countTicket.length;
-      } else {
-        quantityTickets = 0;
-      }
-    } else {
-      quantityTickets = 8;
-    }
-    
+  <p>Осталось талонов: <%=counter%></p>
 
-    let time = new Date()
-    let options = {
-      localeMatcher: "best fit",
-      month: "short",
-      day: "numeric",
-      timezone: "UTC",
-      
-    }
-
-    
-    let month = time.getMonth();
-  
-    time.setDate(time.getDate() + i)
-
-    if(time.getDay() !== 0 && time.getDay() !== 1&& time.getDay() !== 6) { %>
-  <div class="time-box"><%= time.toLocaleDateString() /*(time.getDate()+' '+ monthArray[month])*/ %>
-    <p>Осталось талонов <%= quantityTickets%></p>
-  </div>
-  <%}%>
-      <%}%>
-
+ 
 </div>
 <%- include("../public/page-footer")%>
