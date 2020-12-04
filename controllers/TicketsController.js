@@ -8,8 +8,14 @@ exports.findAllTiketsByService = async function (req, res) { /* функция �
     let tickets = await Ticket.findAllTicketsById(req.params._id) /* вызов функции с передачей id-услуги в качестве параметра */
      
 
-    if(tickets) {
-      console.log(req.params)
+
+    res.render("calendar/chooseDate", {
+      services: req.params,
+      tickets
+    })
+
+ /*    if(tickets.length > 0) {
+     
       res.render("calendar/chooseDate", {
         services: req.params, 
         tickets
@@ -18,8 +24,13 @@ exports.findAllTiketsByService = async function (req, res) { /* функция �
       
 
     } else {
-      res.send("Ничего не найдено по вашему запросу")
-    }
+      console.log("We are here")
+      res.render("calendar/chooseDate", {
+        services: req.params,
+        tickets
+      })
+      
+    } */
     
 
   } catch {

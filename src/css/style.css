@@ -110,6 +110,45 @@ body {
 	height: 100vh;
 }
 
+.container-items {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	
+	grid-gap: 2vw;
+}
+
+.container-items > div {
+	font-size: 2vmin + 2vmax;
+	padding: .5em;
+	background: #02a9f0;
+	text-align: center;
+}
+
+
+
+.time-box {
+
+		background-color: #02a9f0;
+		text-align: center;
+		color: #fff;
+		font-size: 1.3em;
+	
+	}
+	
+	.time-box > p {
+		font-size: 15px;
+		color: #fff;
+	}
+	
+	.time-box.holiday {
+		background-color: grey;
+	}
+	
+	.time-box.holiday > p {
+		/* 	font-size: 15px;
+		color: #fff; */
+	}
+
 .employees {
 	width: 80%;
 }
@@ -130,29 +169,3 @@ body {
 	float: right;
 }
 
-.time-box {
-	display: inline-block;
-	padding: 20px;
-	margin: 5px;
-	width: 15%;
-	height: auto;
-	background-color: #02a9f0;
-	text-align: center;
-	color: #fff;
-	font-size: 1.3em;
-	border-radius: 15px;
-}
-
-.time-box > p {
-	font-size: 15px;
-	color: #fff;
-}
-
-.time-box.holiday {
-	background-color: grey;
-}
-
-.time-box.holiday > p {
-	/* 	font-size: 15px;
-	color: #fff; */
-}

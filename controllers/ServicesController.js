@@ -35,6 +35,11 @@ exports.calendar = async function (req, res, next) {
     let services = await Service.findServiceAndEmployee(req.params.id) /*Передаем в параметрах id-услуги в метод модели*/
     if (services) { /* проверяем есть ли какой то результат в ответе предыдущей функции */
 
+      let endTime = services.employee.dateEnd.slice(0,2)
+      let startTime = services.employee.dateStart.slice(0,2);
+      countTicket = Math.floor((endTime - startTime) * 60 /services.time);
+      
+
       req.params = { /* формируем новый массив параметров запроса  */
         _id: services._id,
         title: services.title,
@@ -42,7 +47,10 @@ exports.calendar = async function (req, res, next) {
         employee: services.employee.employee,
         employeeCab: services.employee.employeeCab,
         dateStart: services.employee.dateStart,
-        dateEnd: services.employee.dateEnd
+        dateEnd: services.employee.dateEnd,
+        time: services.time,
+        count: countTicket,
+        
       }
 
       next() /* передаем управление следующей функции , указанной в параметрах запроса файла publicRouter ->TicketsController.findAllTiketsByService */

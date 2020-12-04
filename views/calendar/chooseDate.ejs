@@ -1,17 +1,43 @@
 <%- include("../public/page-header")%>
-<% console.log(services) %>
+
 
 <div class="container" style="text-align:center;">
   <h4>Выберите дату, на которую вы хотите записаться для получения услуги</h4>
-  <h3><%= services.title%></h3>
-  <h3><%= tickets[0].countTickets%></h3>
-  <%
-  if(tickets[0].countTickets.length < 8) {
-    counter = 8 - tickets[0].countTickets.length;
-  } %>
+ <h3>"<%= services.title %>"</h3>
+ 
+<div class="container-items">
 
-  <p>Осталось талонов: <%=counter%></p>
+<% 
+
+
+for (i = 0; i < 30; i++) {
+ 
+
+  let date = new Date();
+  date.setDate(date.getDate() + i);
 
  
+
+   %>
+  <div class="time-box"><%= date.toLocaleDateString()%></br>
+        <% tickets.forEach(function(item) {
+          if(item.dateOfReceipt == date.toLocaleDateString()) {
+            console.log(item.dateOfReceipt)
+           
+         
+          %>
+          <p>Осталось талонов: <%=  services.count - item.countTickets.length%></p> 
+
+        <%} else {%>
+          <p>Осталось талонов: <%= services.count%></p> 
+        <%}
+        })%>
+  </div>
+<% } %>
+
 </div>
+ 
+</div>
+
+
 <%- include("../public/page-footer")%>
