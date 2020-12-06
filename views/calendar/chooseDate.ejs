@@ -9,29 +9,30 @@
 
 <% 
 
-
 for (i = 0; i < 30; i++) {
  
 
   let date = new Date();
   date.setDate(date.getDate() + i);
 
- 
-
    %>
-  <div class="time-box"><%= date.toLocaleDateString()%></br>
-        <% tickets.forEach(function(item) {
-          if(item.dateOfReceipt == date.toLocaleDateString()) {
-            console.log(item.dateOfReceipt)
-           
-         
-          %>
-          <p>Осталось талонов: <%=  services.count - item.countTickets.length%></p> 
-
-        <%} else {%>
-          <p>Осталось талонов: <%= services.count%></p> 
-        <%}
-        })%>
+  
+   <div class="time-box"><%= date.toLocaleDateString()%></br>
+    <% 
+    
+      let ticket = tickets.filter(function(item) {
+        return item.dateOfReceipt == date.toLocaleDateString().slice(0,10)
+      })
+      console.log(ticket)
+      
+      if(ticket.length>0 && typeof(ticket) !== 'undefined' && ticket !== null) { %>
+        <p>Свободных талонов: <%= services.count - ticket[0].countTickets.length %></p> 
+      <%} else {%>
+        <p>Свободных талонов: <%= services.count%></p>
+      <%}%>
+      
+      
+      
   </div>
 <% } %>
 
