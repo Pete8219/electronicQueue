@@ -15,7 +15,7 @@ for (i = 0; i < 30; i++) {
   let date = new Date();
   date.setDate(date.getDate() + i);
 
-   %>
+  if(date.getDay() != 0 && date.getDay() != 5 && date.getDay() != 6) { %>
   
    <div class="time-box"><%= date.toLocaleDateString()%></br>
     <% 
@@ -34,7 +34,7 @@ for (i = 0; i < 30; i++) {
       
       
   </div>
-<% } %>
+<% }} %>
 
 </div>
  
