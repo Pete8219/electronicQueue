@@ -117,7 +117,7 @@ body {
 	grid-gap: 2vw;
 }
 
-.container-items > div {
+.container-items > a > div {
 	font-size: 2vmin + 2vmax;
 	padding: .5em;
 	background: #02a9f0;

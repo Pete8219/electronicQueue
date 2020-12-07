@@ -31,6 +31,7 @@ exports.home = async function (req, res) {
 
 exports.calendar = async function (req, res, next) {
   try {
+    
 
     let services = await Service.findServiceAndEmployee(req.params.id) /*Передаем в параметрах id-услуги в метод модели*/
     if (services) { /* проверяем есть ли какой то результат в ответе предыдущей функции */

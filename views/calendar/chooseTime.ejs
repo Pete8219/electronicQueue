@@ -1,0 +1,35 @@
+<%- include("../public/page-header")%>
+
+<div class="container" style="text-align:center;">
+
+    <h3>Выберите свободное время для записи на прием</h3>
+
+<div class="container-items">
+<%
+
+
+let dateStart = services.dateStart.slice(0,2);
+let dateEnd = services.dateEnd.slice(0,2);
+let stepUp = services.time;
+let count = (dateEnd - dateStart) * 60 / stepUp ;
+let formatter = new Intl.DateTimeFormat("ru")
+
+let date = new Date()
+<!-- let ticketDate = new Date(date.getFullYear(), date.getMonth(), date.getDate()) -->
+date.setHours(dateStart)
+console.log(formatter.format(date))
+
+for ( i = 0; i <= count; i++ ) {
+
+if (tickets.length > 0) {
+    let ticket = tickets.filter(function(item) {
+        return item.serviceId == services._id
+    }) 
+   
+}%>
+<div class="time-box">11111</div> 
+
+<%} %>
+</div>
+</div>
+<%- include("../public/page-footer")%>

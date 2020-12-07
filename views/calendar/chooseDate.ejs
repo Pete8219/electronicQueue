@@ -1,5 +1,5 @@
 <%- include("../public/page-header")%>
-
+<% console.log(services) %>
 
 <div class="container" style="text-align:center;">
   <h4>Выберите дату, на которую вы хотите записаться для получения услуги</h4>
@@ -14,16 +14,18 @@ for (i = 0; i < 30; i++) {
 
   let date = new Date();
   date.setDate(date.getDate() + i);
+  let formatter = new Intl.DateTimeFormat("ru")
 
   if(date.getDay() != 0 && date.getDay() != 5 && date.getDay() != 6) { %>
   
-   <div class="time-box"><%= date.toLocaleDateString()%></br>
+   <a href="/calendar/chooseTime/service/<%= services._id%>/date/<%= formatter.format(date)%>"><div class="time-box"><%= formatter.format(date)%></br>
     <% 
     
       let ticket = tickets.filter(function(item) {
-        return item.dateOfReceipt == date.toLocaleDateString().slice(0,10)
+
+        return item.dateOfReceipt == formatter.format(date).slice(0,10)
       })
-      console.log(ticket)
+      
       
       if(ticket.length>0 && typeof(ticket) !== 'undefined' && ticket !== null) { %>
         <p>Свободных талонов: <%= services.count - ticket[0].countTickets.length %></p> 
@@ -33,7 +35,7 @@ for (i = 0; i < 30; i++) {
       
       
       
-  </div>
+  </div></a>
 <% }} %>
 
 </div>

@@ -4,38 +4,39 @@ exports.findAllTiketsByService = async function (req, res) {
   /* функция обработки запроса при выборе услуги на главной экране */
 
   try {
-    /*  console.log(req.params) */ /*  вывод параметров запроса */
+    
     let tickets = await Ticket.findAllTicketsById(req.params._id) /* вызов функции с передачей id-услуги в качестве параметра */
 
     res.render("calendar/chooseDate", {
       services: req.params,
       tickets,
     })
-
-    /*    if(tickets.length > 0) {
-     
-      res.render("calendar/chooseDate", {
-        services: req.params, 
-        tickets
-  
-      })
-      
-
-    } else {
-      console.log("We are here")
-      res.render("calendar/chooseDate", {
-        services: req.params,
-        tickets
-      })
-      
-    } */
-  } catch {
+    } catch {
     res.render("calendar/chooseDate", {
       services: req.params,
       tickets: [],
     })
   }
 }
+
+exports.findNeedTickets = async function(req, res) {
+  try {
+    
+    let tickets = await Ticket.findAllTicketsById(req.params._id) /* вызов функции с передачей id-услуги в качестве параметра */
+
+    res.render("calendar/chooseTime", {
+      services: req.params,
+      tickets,
+    })
+    } catch {
+    res.render("calendar/chooseTime", {
+      services: req.params,
+      tickets: [],
+    })
+  }
+}
+
+
 
 exports.viewAllTickets = async function (req, res) {
   try {
