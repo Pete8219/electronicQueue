@@ -26,7 +26,7 @@ for (i = 0; i < 30; i++) {
         return item.dateOfReceipt == formatter.format(date).slice(0,10)
       })
       
-      
+       
       if(ticket.length>0 && typeof(ticket) !== 'undefined' && ticket !== null) { %>
         <p>Свободных талонов: <%= services.count - ticket[0].countTickets.length %></p> 
       <%} else {%>

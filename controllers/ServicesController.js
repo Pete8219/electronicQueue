@@ -38,7 +38,15 @@ exports.calendar = async function (req, res, next) {
 
       let endTime = services.employee.dateEnd.slice(0,2)
       let startTime = services.employee.dateStart.slice(0,2);
+      let step = services.time;
+      let timeToReceipt = [];
       countTicket = Math.floor((endTime - startTime) * 60 /services.time);
+
+      for (i =0; i <=countTicket; i++) {
+        let d = new Date();
+        d.setHours(startTime, step*i, 0 )
+        timeToReceipt.push(d.toLocaleString().slice(12, -3))
+      }
       
 
       req.params = { /* формируем новый массив параметров запроса  */
@@ -51,6 +59,7 @@ exports.calendar = async function (req, res, next) {
         dateEnd: services.employee.dateEnd,
         time: services.time,
         count: countTicket,
+        timeToReceipt,
         
       }
 

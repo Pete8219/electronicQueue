@@ -150,6 +150,7 @@ Service.findServiceAndEmployee = function (id) { /*Передаем в каче�
 
         resolve(services[0]) /* возвращаем первый элемент массива services в функцию контроллера exports.calendar */
       } else {
+        
         reject()
       }
     }

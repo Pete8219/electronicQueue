@@ -100,3 +100,27 @@ function createTimeList() {
 }
 
 createTimeList()
+
+
+
+/* Подсчет талонов */
+
+
+
+
+let dateStart = '15:00',
+    dateEnd = '18:00',
+    step = '30'
+count = (dateEnd.slice(0,2) - dateStart.slice(0,2)) * 60 / step;
+let timeToReceipt = [];
+
+for (i = 0; i <= count; i++) {
+  d = new Date()
+  d.setHours(dateStart.slice(0,2), step*i, 0)
+  
+  timeToReceipt.push(d.toLocaleString())
+  console.log(timeToReceipt[i])
+}
+
+
+
